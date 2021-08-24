@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head><!-- CSS only -->
+        <meta charset="utf-8">
+        <link href="{{ url_for('static',filename="/css/main.css" ) }}" rel="stylesheet" >
+        
+    </head>
+
+    <body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col"></div>
+                <div class="col-10">
+                    {%include "/include/_navbar.html"%}
+                </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col"></div>
+            <div class="col-10">
+                {%block body%}{%endblock%}
+            </div>
+            <div class="col"></div>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+        <script src="{{ url_for('static',filename="/js/bootstrap.js" ) }}"></script>
+    </body>
+
+
+</html>

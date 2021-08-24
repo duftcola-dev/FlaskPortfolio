@@ -1,0 +1,40 @@
+{% extends "/include/_layout.html" %}
+
+{%block body%}
+    <div class="container-fluid">
+        <div class="row"> 
+            <div class="col"></div>
+            <div class="col">
+                <h4>Login</h4>
+                <p>This is only intended for developers</p>
+                {%from "/include/_formhelper.html" import render_field %}
+                    <div class="container">
+                        <form action="/access" method="POST">
+                            <dl>
+                                {{ render_field(form.username) }}
+                                {{ render_field(form.password) }}
+                            </dl>
+                            <p><input type=submit></p>
+                        </form>
+                    </div>
+                {%if access_denied==True%}
+                    <div class="alert alert-danger" role="alert">
+                        Access denied
+                    </div>
+                {%endif%}
+            </div>
+            <div class="col"></div>
+        </div>
+
+
+
+        <div class="row"> 
+            <div class="col"></div>
+            <div class="col">
+                <a href="/" ><button class="btn btn-lg btn-danger">BACK TO HOME PAGE</button></a>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+{%endblock%}

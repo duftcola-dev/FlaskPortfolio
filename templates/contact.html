@@ -1,0 +1,39 @@
+{% extends "/include/_layout.html" %}
+
+{%block body%}
+
+<div class="row"> 
+    <div class="col"></div>
+    <div class="col-10">
+       <h3 class="text-secondary text-center">Thanks for your visit. Feel free to contact me.</h3>
+       <p class="text-center">You can use the email below.</p>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="row"> 
+    <div class="col"></div>
+    <div class="col-10">
+        {% include "/include/_home_cv.html"%}
+    </div>
+    <div class="col"></div>
+</div>
+
+
+
+<div class="row"> 
+    <div class="col"></div>
+    <div class="col-10">
+        <p>Only for developers**</p>
+        <a href="/user_login_page"><button class="btn btn-lg btn-secondary">LOGIN</button></a>
+    </div>
+    <div class="col"></div>
+</div>
+
+
+
+
+
+   
+
+{%endblock%}

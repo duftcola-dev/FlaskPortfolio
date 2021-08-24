@@ -1,0 +1,62 @@
+<div class="row row-3">
+    {%for items in range(0,2)%}
+        <div class="col">
+            <img class="rounded img_max_size"  src="{{url_for('static',filename=red[items] )}}">
+        </div>
+    {%endfor%} 
+        <div class="container">
+            <a href="{{red_link}}"><button class="btn btn-lg btn-light">Show Full Gallery</button></a>
+        </div>
+</div>
+
+
+
+<div class="row row-3">
+    {%for items in range(0,2)%}
+        <div class="col">
+            <img class="rounded img_max_size"  src="{{url_for('static',filename=blue[items] )}}">
+        </div>
+    {%endfor%} 
+        <div class="container">
+            <a href="{{blue_link}}"><button class="btn btn-lg btn-light">Show Full Gallery</button></a>
+        </div>
+</div>
+
+
+
+<div class="row row-3">
+    {%for items in range(0,2)%}
+        <div class="col">
+            <img class="rounded img_max_size"  src="{{url_for('static',filename=orange[items] )}}">
+        </div>
+    {%endfor%} 
+        <div class="container">
+            <a href="{{orange_link}}"><button class="btn btn-lg btn-light">Show Full Gallery</button></a>
+        </div>
+</div>
+
+
+
+<div class="row row-3">
+    {%for items in range(0,2)%}
+        <div class="col">
+            <img class="rounded img_max_size"  src="{{url_for('static',filename=gray[items] )}}">
+        </div>
+    {%endfor%} 
+        <div class="container">
+            <a href="{{gray_link}}"><button class="btn btn-lg btn-light">Show Full Gallery</button></a>
+        </div>
+</div>
+
+
+
+<div class="row row-3">
+    {%for items in range(0,2)%}
+        <div class="col">
+            <img class="rounded img_max_size"  src="{{url_for('static',filename=others[items] )}}">
+        </div>
+    {%endfor%} 
+        <div class="container">
+            <a href="{{others_link}}"><button class="btn btn-lg btn-light">Show Full Gallery</button></a>
+        </div>
+</div>

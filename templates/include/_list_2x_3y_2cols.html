@@ -1,0 +1,12 @@
+
+    <div class="container px-2 py-3">
+        <div class="row row-cols-2">
+            {%for picture in pictures %}
+                <div class="col gy-5"> 
+                    <img class="img-fluid" src="{{ url_for('static',filename=pictures[picture]["url"] ) }}"> 
+                    <h3 class="h3">{{pictures[picture]["title"]}}</h3>
+                    <p>{{pictures[picture]["description"]}}<p>
+                </div>
+            {%endfor%}
+        </div>
+    </div>

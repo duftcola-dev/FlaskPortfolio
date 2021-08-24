@@ -1,0 +1,10 @@
+
+    <div class="container-fluid">
+        <div class="row">
+            {%for picture in pictures %}
+                <div class="col gy-5"> 
+                    <img class="img-fluid" src="{{ url_for('static',filename=pictures[picture] ) }}"> 
+                </div>
+            {%endfor%}
+        </div>
+    </div>

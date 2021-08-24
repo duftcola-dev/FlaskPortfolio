@@ -1,0 +1,25 @@
+<div class="container-fluid"> 
+
+    <div class="row row-cols-3">
+
+        <div class="col">
+            <div class="container bg-danger rounded text-center"><h4 class="h4 text-light">Galleries</h4></div>
+            <img class="img-fluid img-thumbnail" src="{{url_for('static',filename="/content/THUMBNAILS/thumbnail_galleries.png")}}">
+            <a href="/galleries"><button class="btn btn-lg btn-danger">More information ></button></a>
+        </div>  
+
+        <div class="col">
+            <div class="container bg-warning rounded text-center"><h4 class="h4 text-light">Assets</h4></div>
+            <img class="img-fluid img-thumbnail" src="{{url_for('static',filename="/content/THUMBNAILS//thumbnail_assets.png")}}">
+            <a href="/assets"><button class="btn btn-lg btn-warning">More information ></button></a>
+        </div>   
+
+        <div class="col">  
+            <div class="container bg-success rounded text-center"><h4 class="h4 text-light">Projects</h4></div>
+            <img class="img-fluid img-thumbnail" src="{{url_for('static',filename="/content/THUMBNAILS//thumbnail_projects.png")}}">
+            <a href="/projects"><button class="btn btn-lg btn-success">More information ></button></a>
+        </div>   
+    </div>
+
+
+</div>

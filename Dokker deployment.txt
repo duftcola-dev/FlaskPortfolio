@@ -1,0 +1,143 @@
+
+* to see current version installed
+docker version 
+
+
+
+*to see dokcer containers running 
+
+docker ps
+
+
+
+*to stop a docker container
+
+docker stop container_name_here
+
+or 
+
+dokcer stop container_id_here
+
+
+
+*To see images that have been stope/no longer running 
+
+docker ps -a
+
+
+
+*To remove a container 
+
+dokcer rm container name
+
+
+
+*To see a list of images in our system
+
+docker images
+
+
+
+*To remove an image *** you must remove ll the containers running on that images first
+
+dokcer rmi image_name_here
+
+or 
+
+docker rmi image_id_here
+
+
+
+*to download an image 
+
+docker pull image_name_here
+
+
+
+*to run and container
+
+docker run conainer_name_here
+
+
+docker run container_name/app_name
+
+
+
+*to run and container in detach mode ( in the background)
+
+docker run -d container_name/app_name  
+
+*to run on a specific port 
+
+docker run  -p port:app_port container/app_name
+
+example :  docker run  -p 80:5000 container/app_name
+
+***where 5000 is port of my app and 50 the port I want the users to use
+
+
+
+
+To map a container to an app
+** this means you container is mapped/linked to an app that may be in a different 
+directory. This allows to attach different apps to the same image/container
+
+docker run -v app_dir:container_dir image_name
+
+example : docker run -v /opt/datadir:/var/lib/mysql mysql
+
+this also means all the data is stored whre your app is at /opt/datadir
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+HOW to create an image
+
+Create a docker file in your app directory :
+
+Dockerfile *** do not use .txt just Dockerfile 
+
+***In the Dockerfile***
+
+FROM python **here type the image you want to use
+
+RUN apt-get -y update   **type -y so it accepts the command as yes
+RUN apt-get -y upgrade
+
+RUN install python3
+RUN install python3-pip
+RUN pip install flask **use pip to install all the deppendencies you watn to use
+
+
+COPY . /dirname   ** the first parameter "." selects the current directory . The second is the
+                     url of the directory you watn to create the container mapping
+
+ENTRYPOINT FLASK_APP=dirname/app.py flask run ** how docker executes your app
+
+
+
+++++++++++++++++++++++++++++++
+
+Create the container **once the image is made in the Dockerfile
+
+docker build . -t   username/docker_app_tag
+
+
+in order to push it to the repository  the codocker container and the repository at docker cloud 
+
+must have the same name tags:
+
+---->docker buid . -t   duftcola/test  **local container
+
+---->duftcola/test **repository at docker cloud
+
+docker push duftcola/test
+
+
+***you can also add tag name like:
+
+docker push duftcola/test:alpha
+docker push duftcola/test:beta
+docker push duftcola/test:production  ...ect
+
+

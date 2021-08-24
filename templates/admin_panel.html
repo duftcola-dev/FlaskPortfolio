@@ -1,0 +1,146 @@
+{% extends "/include/_layout.html" %}
+
+{%block body%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"></div> 
+            <div class="col"><a href="/logout"><button class="btn btn-lg btn-danger">LOG OUT</button></a></div> 
+            <div class="col"></div>    
+        </div>
+
+        <div class="row">
+            <div class="col"></div> 
+            <div class="col">
+                <h4>Upload Files</h4>
+                <form action="/upload" method=post enctype=multipart/form-data>
+                    <input class="form-control" type=file name="file[]" multiple="">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="RED" value=True id="item1" >
+                            <label class="form-check-label" for="item1">
+                                RED
+                            </label>
+                        </div> 
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="BLUE" value=True id="item2">
+                            <label class="form-check-label" for="item2">
+                                BLUE
+                            </label>
+                        </div>
+        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="ORANGE" value=True id="item3">
+                            <label class="form-check-label" for="item3">
+                                ORANGE
+                            </label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="GRAY" value=True id="item4">
+                            <label class="form-check-label" for="item4">
+                                GRAY
+                            </label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="OTHERS" value=True id="item5">
+                            <label class="form-check-label" for="item5">
+                                OTHERS
+                            </label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="ASSETS" value=True id="item6">
+                            <label class="form-check-label" for="item6">
+                                ASSETS
+                            </label>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="THUMBNAILS" value=True id="item7">
+                            <label class="form-check-label" for="item7">
+                                THUMBNAILS
+                            </label>
+                        </div>
+
+                    <input class="form-control" type=submit value=Upload>
+
+                </form>
+
+                {%if alert_instance==True%}
+                    <div class="alert alert-{{alert_type}}" role="alert">
+                        {{alert_message}}
+                    </div>
+                {%endif%}
+
+            </div> 
+            <div class="col"></div>    
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+            <h4>Delete File</h4>
+                <form method=post action="/search_file">
+                    <input placeholder="search file" class="form-control" type="text" name="target_file">
+                    <input class="form-control" type="submit" name="search" value=SEARCH>
+                    <input class="form-control" type="submit" name="delete" value=DELETE>
+                    <input class="form-control" type="submit" name="show" value=SHOW>
+                    <input class="form-control" type="submit" name="update" value=UPDATE DATABASE>
+                </form>
+            {%if search_match==True%}
+                <div class="alert alert-{{search_type}}" role="alert">
+                    {{search_message}}
+                </div>
+            {%endif%}
+            {%if show_files==True%}
+                <ul class="list-group">
+                {%for file in searched_files%}   
+                    <li class="list-group-item">{{file}}</li>
+                {%endfor%}
+                </ul>
+            {%endif%}
+
+            </div>
+            <div class="col"></div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h4>Upload Article</h4>
+                <form action="/new_article" method=post>
+                    <input placeholder="title" class="form-control" type="text" name="title">
+                    <input placeholder="link" class="form-control" type="text" name="link">
+                    <textarea placeholder="description" class="form-control" name="content"></textarea>
+                    <input class="form-control" type="submit" name="show" value=SHOW>
+                    <input class="form-control" type="submit" name="search" value=SEARCH>
+                    <input class="form-control" type="submit" name="delete" value=DELETE>
+                    <input class="form-control" type="submit" name="upload" value=UPLOAD>
+                </form>
+
+                {% if article_search==True%}
+                    <ul class="list-group">
+                        {% for article in articles %}
+                            <li class="list-group-item">{{article.get("_id")}}</li>
+                        {%endfor%}
+                    </ul>
+                {%endif%}
+
+                {%if article_upload==True%}
+                    <div class="alert alert-{{article_type}}" role="alert">
+                        {{article_result}}
+                    </div>
+                {%endif%}
+
+
+            </div>
+            <div class="col"></div>
+
+        </div>
+
+
+    </div>
+{%endblock%}
