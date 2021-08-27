@@ -131,7 +131,7 @@ class DynamicContent():
                 self.__galleries_thumbnails[folders].append(files)
                 if count==3:
                     break
-        self.__galleries_thumbnails.pop("THUMBNAILS")# we dont need these ones
+ 
 
 
 
