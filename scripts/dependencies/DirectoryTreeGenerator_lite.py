@@ -91,7 +91,6 @@ class TreeExplorer(Interface_MetaDir):
                 
                 self.Dir_Registry.update({name:path})
                 self.Dir_List.append(path)
-
                 self.__Explore_Directories(self.new_path)
             else:
                 self.Files_Registry.update({name:path})

@@ -6,10 +6,9 @@ from cryptography.fernet import Fernet
 class UserAccess:
 
 
-    def __init__(self,path="\\auth\\pasw.json") -> None:
+    def __init__(self,path) -> None:
   
-        self.path=os.getcwd()
-        self.path=self.path+path
+        self.path=path
         self.app_key=""
  
 
