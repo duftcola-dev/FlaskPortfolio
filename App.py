@@ -2,13 +2,13 @@ from os import chdir
 from flask import Flask,render_template,request,make_response,session,redirect,url_for,logging,flash
 from werkzeug.utils import secure_filename, send_from_directory
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
-from scripts.Dynamic import DynamicContent
-from scripts.MongoDriver import MgDriver
-from scripts.dependencies.Logs import Logs
-from scripts.Access import UserAccess
-from scripts.UploadManager import Upload
-from scripts.dependencies.DirectoryTreeGenerator_lite import TreeExplorer
-from scripts.PathTempStorage import PathStorage
+from .scripts.Dynamic import DynamicContent
+from .scripts.MongoDriver import MgDriver
+from .scripts.dependencies.Logs import Logs
+from .scripts.Access import UserAccess
+from .scripts.UploadManager import Upload
+from .scripts.dependencies.DirectoryTreeGenerator_lite import TreeExplorer
+from .scripts.PathTempStorage import PathStorage
 from inspect import getframeinfo,currentframe
 
 #--------METHODS--------------
