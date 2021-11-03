@@ -16,5 +16,8 @@
     export FLASK_APP=App 
     flask run
        
-       
+---auth ---
+
+flaskportfolioapp
+app
 

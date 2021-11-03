@@ -3,7 +3,7 @@
         <div class="row row-cols-3">
             {%for picture in pictures %}
                 <div class="col gy-5"> 
-                    <img class="img-fluid" src="{{ url_for('static',filename=pictures[picture]["url"] ) }}"> 
+                    <img class="img-fluid" src="{{ url_for('static',filename=pictures[picture]['url'] ) }}"> 
                     <h3 class="h3">{{pictures[picture]["title"]}}</h3>
                     <p>{{pictures[picture]["description"]}}<p>
                 </div>

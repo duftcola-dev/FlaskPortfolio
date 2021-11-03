@@ -2,13 +2,13 @@ from os import chdir
 from flask import Flask,render_template,request,make_response,session,redirect,url_for,logging,flash
 from werkzeug.utils import secure_filename, send_from_directory
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
-from scripts.Dynamic import DynamicContent
-from scripts.MongoDriver import MgDriver
-from scripts.dependencies.Logs import Logs
-from scripts.Access import UserAccess
-from scripts.UploadManager import Upload
-from scripts.dependencies.DirectoryTreeGenerator_lite import TreeExplorer
-from scripts.PathTempStorage import PathStorage
+from .scripts.Dynamic import DynamicContent
+from .scripts.MongoDriver import MgDriver
+from .scripts.dependencies.Logs import Logs
+from .scripts.Access import UserAccess
+from .scripts.UploadManager import Upload
+from .scripts.dependencies.DirectoryTreeGenerator_lite import TreeExplorer
+from .scripts.PathTempStorage import PathStorage
 from inspect import getframeinfo,currentframe
 
 #--------METHODS--------------
@@ -69,7 +69,6 @@ dynamic_content.SetGalleryThumbnailsLink("ASSETS","/assets")
 
 # getting app urls of files and pictures
 
-
 pathstorage.content_urls=dynamic_content.GetContentFilesUrls()
 pathstorage.pictures_urls=dynamic_content.GetPicturesUrls()
 pathstorage.upload_urls=dynamic_content.GetUploadPathUrls()
@@ -103,12 +102,25 @@ class Registration(Form):
 
 def UpdateContent():
 
-    content.ExploreDirectories(path="static/content",mode="relative")
+    content.ExploreDirectories(mode="",path="/static/content",ignore="venv")
     files_manager.ExploreDirectories(mode="",ignore="venv") 
+    dynamic_content.SetGalleryThumbnailsLink("RED","/red_theme")
+    dynamic_content.SetGalleryThumbnailsLink("BLUE","/blue_theme")
+    dynamic_content.SetGalleryThumbnailsLink("ORANGE","/orange_theme")
+    dynamic_content.SetGalleryThumbnailsLink("GRAY","/gray_theme")
+    dynamic_content.SetGalleryThumbnailsLink("OTHERS","/others_theme")
+    dynamic_content.SetGalleryThumbnailsLink("ASSETS","/assets")
+
     pathstorage.content_urls=dynamic_content.GetContentFilesUrls()
     pathstorage.pictures_urls=dynamic_content.GetPicturesUrls()
     pathstorage.upload_urls=dynamic_content.GetUploadPathUrls()
     pathstorage.thumbnails_urls=dynamic_content.GetGalleriesThumnails()
+    
+    Urls=MgDriver(logs,"FlaskPortfolioApp","Url","FlaskPortFolioUrls",pathstorage.pictures_urls)
+    Registry=MgDriver(logs,"FlaskPortfolioApp","Registry",logs.GetDate(),"First Entry")
+    Articles=MgDriver(logs,"FlaskPortfolioApp","Projects","",{"description":"","link":""})
+    Urls.SaveChanges("Url","_id","FlaskPortFolioUrls",pathstorage.pictures_urls)
+
 
 
 #-----------ROUTES--------------- 
@@ -182,13 +194,17 @@ def Access():
     if request.method=="POST" and form.validate():
         user=form.username.data
         password=form.password.data
-        if (access.CheckCredentials(user,password)==True):
+        # if (access.CheckCredentials(user,password)==True):
+        if user=="robin" and password=="root":
 
             session["username"]=user
             return render_template("admin_panel.html",navbar_color=color_default,alert_instance=False)
         else:
             return render_template("login.html",navbar_color=color_default,form=form,access_denied=True)
- 
+    else:
+        return render_template("login.html",navbar_color=color_default,form=form,access_denied=True)
+
+    
 
 @app.route("/user_login_page")
 def user_login():
