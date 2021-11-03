@@ -20,7 +20,7 @@ def GetCurrentFile():
 
     cf=currentframe()
     currentfile=getframeinfo(cf).filename
-    start=currentfile.rfind("\\")+1
+    start=currentfile.rfind("/")+1
     end=len(currentfile)
     string=""
     for char in range(start,end):
